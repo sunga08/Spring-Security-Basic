@@ -42,7 +42,7 @@ public class IndexController {
         return "manager";
     }
 
-    @GetMapping("/loginForm") //스프링 시큐리티가 낚아채버림
+    @GetMapping("/loginForm")
     public String loginForm(){
         return "loginForm";
     }

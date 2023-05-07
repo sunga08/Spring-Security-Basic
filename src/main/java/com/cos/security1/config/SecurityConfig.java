@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity //스프링 시큐리티 필터가 스프링 필터체인에 등록 됨
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //해당 메서드틔 리턴되는 오브젝트를 IoC로 등록해줌
+    //해당 메서드의 리턴되는 오브젝트를 IoC로 등록해줌
     @Bean
     public BCryptPasswordEncoder encodePwd() {
         return new BCryptPasswordEncoder();
@@ -28,6 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 /**권한이 없는 페이지로 요청이 들어올 때 로그인 페이지로 이동**/
                 .and()
                 .formLogin()
-                .loginPage("/loginForm");
+                .loginPage("/loginForm")
+                /**해당 url이 호출되면 시큐리티가 낚아채서 대신 로그인 진행**/
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/"); //로그인 성공 시 이동할 url
     }
 }
